@@ -1,0 +1,9 @@
+.panel-primary {
+  margin-top: 200px;
+}
+.panel .panel-title {
+  height: 30px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+}
