@@ -7,3 +7,140 @@
   line-height: 30px;
   text-align: center;
 }
+a:hover,
+a {
+  color: #fff;
+  text-decoration: none;
+}
+.bgc {
+  background-color: #1D1F21;
+}
+ul {
+  list-style: none;
+}
+html,
+body {
+  height: 100%;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.lt-aside {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 180px;
+  height: 100%;
+  background-color: #222D32;
+  z-index: 999;
+  transition: all 1s;
+}
+.lt-aside .header {
+  width: 100%;
+  height: 50px;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  background-color: #367FA9;
+}
+.lt-aside .user {
+  width: 180px;
+  height: 180px;
+  margin-top: 50px;
+}
+.lt-aside .user img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+.lt-aside .user p {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+}
+.lt-aside .nav {
+  width: 180px;
+}
+.lt-aside .nav ul {
+  padding: 0px;
+}
+.lt-aside .nav ul li {
+  width: 180px;
+  line-height: 40px;
+}
+.lt-aside .nav ul li a {
+  display: block;
+  height: 40px;
+  text-align: center;
+}
+.lt-aside .nav .info .child a {
+  padding-left: 20px;
+}
+.lt-aside .nav .info .child .display {
+  display: none;
+}
+.hidd {
+  left: -180px;
+}
+.section {
+  width: 100%;
+  height: 100%;
+}
+.section .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding-left: 180px;
+  background-color: #3C8DBC;
+  transition: all 1s;
+}
+.section .topbar i {
+  width: 50px;
+  height: 50px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 50px;
+}
+.section .topbar.hi {
+  padding-left: 0px;
+}
+.content {
+  padding-top: 70px;
+  padding-left: 200px;
+  padding-right: 50px;
+  height: 100%;
+}
+.content .echar .left {
+  width: 48%;
+  height: 400px;
+}
+.content .echar .right {
+  width: 48%;
+  height: 400px;
+}
+.content .tablebox th,
+.content .tablebox td {
+  text-align: center;
+  vertical-align: middle;
+}
+.addbtn {
+  margin-bottom: 20px;
+}
+.secondlogo {
+  width: 80px;
+}
+#fileupload {
+  display: none;
+}
+#addpic {
+  width: 100px;
+}

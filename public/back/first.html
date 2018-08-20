@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.min.css">
   <link rel="stylesheet" href="./css/common.css">
-  <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
   
@@ -19,13 +20,13 @@
     </div>
     <div class="nav">
       <ul>
-        <li>
+        <li class="bgc">
           <a href="user.html"><i class="glyphicon glyphicon-user"></i> 用户管理</a>
         </li>
         <li class="info">
           <a href="javascript:;"><i class="glyphicon glyphicon-list"></i> 分类管理</a>
-          <div class="child" style="display: none">
-            <a href="first.html" >一级分类</a>
+          <div class="child">
+            <a href="first.html">一级分类</a>
             <a href="second.html">二级分类</a>
             </div>
         </li>
@@ -45,32 +46,59 @@
       <div class="nav">
         <ol class="breadcrumb">
           <li><a href="#">管理系统</a></li>
-          <li class="active">首页</li>
+          <li>首页</li>
+          <li class="active">二级分类</li>
         </ol>
       </div>
-      <div class="echar">
-        <div class="left pull-left">
-        </div>
-        <div class="right pull-right">
-        </div>
-      </div>
+
+      <button type="button" class="btn btn-default addbtn">添加分类</button>
+      <!-- 序号	用户名	手机号	状态	操作 -->
+      <table class="table table-bordered table-hover tablebox"> 
+        <thead>
+          <tr>
+            <th width="20%">序号</th>
+            <th  width="80%">一级分类名</th>
+      
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+      
+      <div class="text-right">
+        <ul id="pagination">
+        <!--里面什么都不用写-->
+      </ul>
+    </div>
     </div>
   </div>
 
+
+
   <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">温馨提示</h4>
+            <h4 class="modal-title">添加分类</h4>
           </div>
           <div class="modal-body">
-            <p><i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗？</p>
+            <form class="form-horizontal" id="form">
+                <div class="form-group">
+                  <div class="col-sm-10">
+                    <input name="categoryName" type="text" class="form-control" placeholder="请输入一级分类" id="addinp">
+                  </div>
+                </div>
+              
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary out">退出</button>
+            <button type="submit" class="btn btn-primary addfirst">添加</button>
           </div>
+
+        </form>
+
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -78,11 +106,22 @@
 
 
 
-
+  <script id="tpl" type="text/html">
+    {{ each rows v i }}
+    <tr dataid={{ v.id }}>
+      <td>{{ i+1+(page-1)*size }}</td>
+      <td>{{ v.categoryName}}</td>
+    </tr>
+    {{ /each }}
+  
+  </script>
   <script src="./lib/jquery/jquery.min.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="./lib/echarts/echarts.min.js"></script>
   <script src="./js/common.js"></script>
-  <script src="./js/index.js"></script>
+  <script src="./lib/artTemplate/template-web.js"></script>
+  <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+  <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+  <script src="./js/first.js"></script>
+
 </body>
 </html>
