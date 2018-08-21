@@ -10,7 +10,7 @@ $(function(){
       url:"/category/querySecondCategoryPaging",
       data:{
         page:1,
-        pageSize:5
+        pageSize:99
       },
       dataType:"json",
       success:function(e){
@@ -39,7 +39,8 @@ $(function(){
     })
   })
 
-
+  //文件上传
+  
   $("#fileupload").fileupload({
     
     dataType:"json",
@@ -50,6 +51,8 @@ $(function(){
       var url = data.result.picAddr;
       console.log(url);
       $("#addpic").attr("src",url);
+      $('[name="brandLogo"]').val(url);
+      $("form").data("bootstrapValidator").updateStatus("brandLogo","VALID")
     }
   });
 
@@ -60,17 +63,71 @@ $(function(){
     var str = $(this).text();
     console.log(str);
     $(".selSed span:first-child").text(str);
+    var id = $(this).parent().data("id");
+    console.log(id)
+    $('[name="categoryId"]').val(id);
+
+    $("#form").data('bootstrapValidator').updateStatus("categoryId","VALID")
+
   })
 
-  //表单验证
+  // 表单验证
   $('#form').bootstrapValidator({
+
+    excluded: [':disabled'],
     feedbackIcons: {
       valid: 'glyphicon glyphicon-ok',
       invalid: 'glyphicon glyphicon-remove',
       validating: 'glyphicon glyphicon-refresh'
     },
     fields:{
-      
+      categoryId:{
+        validators:{
+          notEmpty: {
+            message: '不能为空'
+          },
+         }
+      },
+      brandName:{
+        validators:{
+          notEmpty: {
+            message: '分类名不能为空'
+          },
+         }
+      },
+      brandLogo:{
+        validators:{
+          notEmpty: {
+            message: '图片不能为空'
+          },
+      }
+    } 
     }
   })
+
+  //表单提交
+  $('#form').on('success.form.bv', function (e) {
+    e.preventDefault();
+
+    // e.preventDefault();
+    //使用ajax提交逻辑
+    $.ajax({
+      type:"post",
+      url:"/category/addSecondCategory",
+      data:$('#form').serialize(),
+      dataType:"json",
+      success:function(e){
+        console.log(e)
+        $('#myModal').modal("hide");
+        render();
+
+        $("#form").data('bootstrapValidator').resetForm(true);
+        $(".selSed span:first-child").text("请选择一级分类");
+        $('#imgbox img').attr("src","./images/default.png");
+
+      }
+  
+
+    })
+ });
 })

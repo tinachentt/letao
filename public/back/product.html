@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.min.css">
   <link rel="stylesheet" href="./css/common.css">
 </head>
 <body>
@@ -24,11 +26,11 @@
         <li class="info">
           <a href="javascript:;"><i class="glyphicon glyphicon-list"></i> 分类管理</a>
           <div class="child" style="display: none">
-              <a href="first.html" >一级分类</a>
-              <a href="second.html">二级分类</a>
+            <a href="first.html">一级分类</a>
+            <a href="second.html">二级分类</a>
             </div>
         </li>
-        <li class="bgc">
+        <li   class="bgc">
           <a href="product.html"><i class="glyphicon glyphicon-tags"></i> 商品管理</a>
         </li>
       </ul>
@@ -40,23 +42,94 @@
       <a href="javascript:;" class="icon-nav fl"><i class="glyphicon glyphicon-align-justify"></i></a>
       <a href="javascript:;" class="icon-login fr"><i class="glyphicon glyphicon-log-out"></i></a>
     </div>
-    <div class="content"></div>
+    <div class="content">
+     <div class="nav">
+        <ol class="breadcrumb">
+          <li><a href="#">管理系统</a></li>
+          <li>首页</li>
+          <li class="active">二级分类</li>
+        </ol>
+      </div>
+
+      <button type="button" class="btn btn-default addbtn">添加分类</button>
+      <!-- 序号	用户名	手机号	状态	操作 -->
+      <table class="table table-bordered table-hover tablebox"> 
+        <thead>
+          <tr>
+            <th width="10%">序号</th>
+            <th width="20%">商品名称</th>
+            <th width="20%">商品描述</th>
+            <th>商品库存</th>
+            <th>商品尺寸</th>
+            <th>商品状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+      
+      <div class="text-right">
+        <ul id="pagination">
+        <!--里面什么都不用写-->
+      </ul>
+    </div>
+    </div>
   </div>
 
+
   <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">温馨提示</h4>
+            <h4 class="modal-title">添加分类</h4>
           </div>
           <div class="modal-body">
-            <p><i class="glyphicon glyphicon-info-sign"></i>您确定要退出后台管理系统吗？</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary out">退出</button>
-          </div>
+            <form class="form-horizontal" id="form">
+                
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <div class="btn-group">
+                            <button type="button" class="selSed btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span>请选择二级分类</span> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu secondul">
+                            </ul>
+                          </div>
+                    <input type="hidden" name="categoryId">
+                          
+                    </div>
+                    <input type="hidden" name="hot" value="1">
+                    
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <input name="brandName" type="text" class="secondname form-control" placeholder="请输入一级分类" id="addinp">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                        <label for="fileupload" class="btn btn-default">选择文件</label>
+                        <input id="fileupload" type="file" name="pic1" data-url="/category/addSecondCategoryPic" multiple>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div id="imgbox">
+                        <img src="./images/default.png" alt="" id="addpic">
+                        <input type="hidden" name="brandLogo">
+                        
+                    </div>
+                  </div>
+          
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary addsecond">添加</button>
+              </div>
+            </form>
+           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
@@ -64,10 +137,36 @@
 
 
 
+  <script id="tpl" type="text/html">
+    {{ each rows v i }}
+    <tr dataid={{ v.id }}>
+      <td>{{ i+1+(page-1)*size }}</td>
+      <td>{{ v.categoryName}}</td>
+      <td>{{ v.brandName }}</td>
+      <td>{{ v.brandName }}</td>
+      <td>{{ v.brandName }}</td>
+      <td>{{ v.brandName }}</td>
+      <td><img src="{{ v.brandLogo}}" alt="" class="secondlogo"></td>
+    </tr>
+    {{ /each }}
+  
+  </script>
 
+  <script id="sencondtpl" type="text/html">
+    {{ each rows v i }}
+    <li data-id="{{ v.id }}"><a href="#">{{ v.categoryName }}</a></li>
+    {{ /each }}
+  
+  </script>
   <script src="./lib/jquery/jquery.min.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="./lib/artTemplate/template-web.js"></script>
+  <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+  <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
   <script src="./js/common.js"></script>
+  <script src="./js/product.js"></script>
 
 </body>
 </html>

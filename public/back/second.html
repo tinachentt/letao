@@ -20,14 +20,14 @@
     </div>
     <div class="nav">
       <ul>
-        <li class="bgc">
+        <li>
           <a href="user.html"><i class="glyphicon glyphicon-user"></i> 用户管理</a>
         </li>
         <li class="info">
           <a href="javascript:;"><i class="glyphicon glyphicon-list"></i> 分类管理</a>
           <div class="child">
             <a href="first.html">一级分类</a>
-            <a href="second.html">二级分类</a>
+            <a href="second.html"  class="bgc">二级分类</a>
             </div>
         </li>
         <li>
@@ -43,7 +43,7 @@
       <a href="javascript:;" class="icon-login fr"><i class="glyphicon glyphicon-log-out"></i></a>
     </div>
     <div class="content">
-      <div class="nav">
+     <div class="nav">
         <ol class="breadcrumb">
           <li><a href="#">管理系统</a></li>
           <li>首页</li>
@@ -96,28 +96,35 @@
                             <ul class="dropdown-menu secondul">
                             </ul>
                           </div>
+                    <input type="hidden" name="categoryId">
+                          
                     </div>
+                    <input type="hidden" name="hot" value="1">
+                    
                   </div>
                   <div class="form-group">
                     <div class="col-sm-10">
-                      <input name="categoryName" type="text" class="form-control" placeholder="请输入一级分类" id="addinp">
+                      <input name="brandName" type="text" class="secondname form-control" placeholder="请输入一级分类" id="addinp">
                     </div>
                   </div>
 
                   <div class="form-group">
-                      <div class="col-sm-10">
-                          <label for="fileupload" class="btn btn-default">选择文件</label>
-                          <input id="fileupload" type="file" name="pic1" data-url="/category/addSecondCategoryPic" multiple>
-                          
-                      </div>
+                    <div class="col-sm-10">
+                        <label for="fileupload" class="btn btn-default">选择文件</label>
+                        <input id="fileupload" type="file" name="pic1" data-url="/category/addSecondCategoryPic" multiple>
                     </div>
-                    <div>
-                      <img src="./images/default.png" alt="" id="addpic">
+                  </div>
+                  <div class="form-group">
+                    <div id="imgbox">
+                        <img src="./images/default.png" alt="" id="addpic">
+                        <input type="hidden" name="brandLogo">
+                        
                     </div>
+                  </div>
           
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-primary addfirst">添加</button>
+                <button type="submit" class="btn btn-primary addsecond">添加</button>
               </div>
             </form>
            </div>
@@ -142,7 +149,7 @@
 
   <script id="sencondtpl" type="text/html">
     {{ each rows v i }}
-    <li><a href="#">{{ v.categoryName }}</a></li>
+    <li data-id="{{ v.id }}"><a href="#">{{ v.categoryName }}</a></li>
     {{ /each }}
   
   </script>
