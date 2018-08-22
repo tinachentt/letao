@@ -141,6 +141,6 @@ body {
 #fileupload {
   display: none;
 }
-#addpic {
-  width: 100px;
+#imgbox img {
+  width: 80px;
 }
